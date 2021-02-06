@@ -1,0 +1,306 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 6
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L 74xx:74LS245 U?
+U 1 1 6020BEE2
+P 6100 3600
+AR Path="/6003E07D/6020BEE2" Ref="U?"  Part="1" 
+AR Path="/6003E07D/601FFCE4/6020BEE2" Ref="U7"  Part="1" 
+AR Path="/6003E07D/6024545F/6020BEE2" Ref="U10"  Part="1" 
+AR Path="/6003E07D/6024551A/6020BEE2" Ref="U13"  Part="1" 
+AR Path="/6003E07D/6024559E/6020BEE2" Ref="U16"  Part="1" 
+F 0 "U7" H 6100 4581 50  0000 C CNN
+F 1 "74HCT245" H 6100 4490 50  0000 C CNN
+F 2 "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm" H 6100 3600 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS245" H 6100 3600 50  0001 C CNN
+	1    6100 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6020BF4A
+P 5550 4250
+AR Path="/6003E07D/6020BF4A" Ref="#PWR?"  Part="1" 
+AR Path="/6003E07D/601FFCE4/6020BF4A" Ref="#PWR014"  Part="1" 
+AR Path="/6003E07D/6024545F/6020BF4A" Ref="#PWR023"  Part="1" 
+AR Path="/6003E07D/6024551A/6020BF4A" Ref="#PWR032"  Part="1" 
+AR Path="/6003E07D/6024559E/6020BF4A" Ref="#PWR041"  Part="1" 
+F 0 "#PWR014" H 5550 4000 50  0001 C CNN
+F 1 "GND" H 5555 4077 50  0000 C CNN
+F 2 "" H 5550 4250 50  0001 C CNN
+F 3 "" H 5550 4250 50  0001 C CNN
+	1    5550 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 4250 5550 4100
+Wire Wire Line
+	5550 4100 5600 4100
+Text HLabel 2800 3100 0    50   Input ~ 0
+SER
+Text HLabel 2800 3300 0    50   Input ~ 0
+SRCLK
+Text HLabel 2800 3600 0    50   Input ~ 0
+RCLK
+$Comp
+L CustomPower:VBAT #PWR010
+U 1 1 6020FA26
+P 6100 2550
+AR Path="/6003E07D/601FFCE4/6020FA26" Ref="#PWR010"  Part="1" 
+AR Path="/6003E07D/6024545F/6020FA26" Ref="#PWR019"  Part="1" 
+AR Path="/6003E07D/6024551A/6020FA26" Ref="#PWR028"  Part="1" 
+AR Path="/6003E07D/6024559E/6020FA26" Ref="#PWR037"  Part="1" 
+F 0 "#PWR010" H 6100 2800 50  0001 C CNN
+F 1 "VBAT" H 6115 2723 50  0000 C CNN
+F 2 "" H 6100 2550 50  0001 C CNN
+F 3 "" H 6100 2550 50  0001 C CNN
+	1    6100 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6020FF07
+P 6100 4550
+AR Path="/6003E07D/6020FF07" Ref="#PWR?"  Part="1" 
+AR Path="/6003E07D/601FFCE4/6020FF07" Ref="#PWR017"  Part="1" 
+AR Path="/6003E07D/6024545F/6020FF07" Ref="#PWR026"  Part="1" 
+AR Path="/6003E07D/6024551A/6020FF07" Ref="#PWR035"  Part="1" 
+AR Path="/6003E07D/6024559E/6020FF07" Ref="#PWR044"  Part="1" 
+F 0 "#PWR017" H 6100 4300 50  0001 C CNN
+F 1 "GND" H 6105 4377 50  0000 C CNN
+F 2 "" H 6100 4550 50  0001 C CNN
+F 3 "" H 6100 4550 50  0001 C CNN
+	1    6100 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6100 4550 6100 4400
+Wire Wire Line
+	6100 2550 6100 2800
+$Comp
+L power:+3V3 #PWR013
+U 1 1 60211E42
+P 5500 4000
+AR Path="/6003E07D/601FFCE4/60211E42" Ref="#PWR013"  Part="1" 
+AR Path="/6003E07D/6024545F/60211E42" Ref="#PWR022"  Part="1" 
+AR Path="/6003E07D/6024551A/60211E42" Ref="#PWR031"  Part="1" 
+AR Path="/6003E07D/6024559E/60211E42" Ref="#PWR040"  Part="1" 
+F 0 "#PWR013" H 5500 3850 50  0001 C CNN
+F 1 "+3V3" V 5515 4128 50  0000 L CNN
+F 2 "" H 5500 4000 50  0001 C CNN
+F 3 "" H 5500 4000 50  0001 C CNN
+	1    5500 4000
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5500 4000 5600 4000
+Text HLabel 2800 4600 0    50   Output ~ 0
+SER_OUT
+Wire Wire Line
+	2800 4600 4350 4600
+Wire Wire Line
+	4350 4600 4350 4000
+Wire Wire Line
+	4350 4000 4200 4000
+Wire Wire Line
+	2800 3100 3400 3100
+Wire Wire Line
+	2800 3300 3400 3300
+Wire Wire Line
+	2800 3600 3400 3600
+$Comp
+L power:+3V3 #PWR09
+U 1 1 60224937
+P 3800 2550
+AR Path="/6003E07D/601FFCE4/60224937" Ref="#PWR09"  Part="1" 
+AR Path="/6003E07D/6024545F/60224937" Ref="#PWR018"  Part="1" 
+AR Path="/6003E07D/6024551A/60224937" Ref="#PWR027"  Part="1" 
+AR Path="/6003E07D/6024559E/60224937" Ref="#PWR036"  Part="1" 
+F 0 "#PWR09" H 3800 2400 50  0001 C CNN
+F 1 "+3V3" H 3815 2723 50  0000 C CNN
+F 2 "" H 3800 2550 50  0001 C CNN
+F 3 "" H 3800 2550 50  0001 C CNN
+	1    3800 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR011
+U 1 1 60226416
+P 3250 3400
+AR Path="/6003E07D/601FFCE4/60226416" Ref="#PWR011"  Part="1" 
+AR Path="/6003E07D/6024545F/60226416" Ref="#PWR020"  Part="1" 
+AR Path="/6003E07D/6024551A/60226416" Ref="#PWR029"  Part="1" 
+AR Path="/6003E07D/6024559E/60226416" Ref="#PWR038"  Part="1" 
+F 0 "#PWR011" H 3250 3250 50  0001 C CNN
+F 1 "+3V3" V 3265 3528 50  0000 L CNN
+F 2 "" H 3250 3400 50  0001 C CNN
+F 3 "" H 3250 3400 50  0001 C CNN
+	1    3250 3400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3250 3400 3400 3400
+$Comp
+L power:GND #PWR015
+U 1 1 60228938
+P 3800 4300
+AR Path="/6003E07D/601FFCE4/60228938" Ref="#PWR015"  Part="1" 
+AR Path="/6003E07D/6024545F/60228938" Ref="#PWR024"  Part="1" 
+AR Path="/6003E07D/6024551A/60228938" Ref="#PWR033"  Part="1" 
+AR Path="/6003E07D/6024559E/60228938" Ref="#PWR042"  Part="1" 
+F 0 "#PWR015" H 3800 4050 50  0001 C CNN
+F 1 "GND" H 3805 4127 50  0000 C CNN
+F 2 "" H 3800 4300 50  0001 C CNN
+F 3 "" H 3800 4300 50  0001 C CNN
+	1    3800 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 4300 3800 4200
+$Comp
+L power:GND #PWR012
+U 1 1 60229D8F
+P 3300 3850
+AR Path="/6003E07D/601FFCE4/60229D8F" Ref="#PWR012"  Part="1" 
+AR Path="/6003E07D/6024545F/60229D8F" Ref="#PWR021"  Part="1" 
+AR Path="/6003E07D/6024551A/60229D8F" Ref="#PWR030"  Part="1" 
+AR Path="/6003E07D/6024559E/60229D8F" Ref="#PWR039"  Part="1" 
+F 0 "#PWR012" H 3300 3600 50  0001 C CNN
+F 1 "GND" H 3305 3677 50  0000 C CNN
+F 2 "" H 3300 3850 50  0001 C CNN
+F 3 "" H 3300 3850 50  0001 C CNN
+	1    3300 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3300 3850 3300 3700
+Wire Wire Line
+	3300 3700 3400 3700
+Text Label 4400 3100 2    50   ~ 0
+in0
+Text Label 4400 3200 2    50   ~ 0
+in1
+Text Label 4400 3300 2    50   ~ 0
+in2
+Text Label 4400 3400 2    50   ~ 0
+in3
+Text Label 4400 3500 2    50   ~ 0
+in4
+Text Label 4400 3600 2    50   ~ 0
+in5
+Text Label 4400 3700 2    50   ~ 0
+in6
+Text Label 4400 3800 2    50   ~ 0
+in7
+Text Label 5400 3100 0    50   ~ 0
+in0
+Text Label 5400 3200 0    50   ~ 0
+in1
+Text Label 5400 3300 0    50   ~ 0
+in2
+Text Label 5400 3400 0    50   ~ 0
+in3
+Text Label 5400 3600 0    50   ~ 0
+in5
+Text Label 5400 3700 0    50   ~ 0
+in6
+Wire Wire Line
+	3800 2550 3800 2900
+$Comp
+L 74xx:74HC595 U?
+U 1 1 6020BEDC
+P 3800 3500
+AR Path="/6003E07D/6020BEDC" Ref="U?"  Part="1" 
+AR Path="/6003E07D/601FFCE4/6020BEDC" Ref="U6"  Part="1" 
+AR Path="/6003E07D/6024545F/6020BEDC" Ref="U9"  Part="1" 
+AR Path="/6003E07D/6024551A/6020BEDC" Ref="U12"  Part="1" 
+AR Path="/6003E07D/6024559E/6020BEDC" Ref="U15"  Part="1" 
+F 0 "U6" H 3800 4281 50  0000 C CNN
+F 1 "74HC595" H 3800 4190 50  0000 C CNN
+F 2 "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" H 3800 3500 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3800 3500 50  0001 C CNN
+	1    3800 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 3100 4400 3100
+Wire Wire Line
+	4200 3200 4400 3200
+Wire Wire Line
+	4200 3300 4400 3300
+Wire Wire Line
+	4200 3400 4400 3400
+Wire Wire Line
+	4200 3500 4400 3500
+Wire Wire Line
+	4200 3600 4400 3600
+Wire Wire Line
+	4200 3700 4400 3700
+Wire Wire Line
+	4200 3800 4400 3800
+Wire Wire Line
+	5400 3100 5600 3100
+Wire Wire Line
+	5400 3200 5600 3200
+Wire Wire Line
+	5400 3300 5600 3300
+Wire Wire Line
+	5400 3400 5600 3400
+Wire Wire Line
+	5400 3600 5600 3600
+Wire Wire Line
+	5400 3700 5600 3700
+Text Label 7250 3500 2    50   ~ 0
+segment_c
+Text Label 7250 3700 2    50   ~ 0
+segment_d
+Text Label 7250 3800 2    50   ~ 0
+segment_e
+Text Label 7250 3200 2    50   ~ 0
+segment_f
+Text Label 7250 3100 2    50   ~ 0
+segment_g
+Wire Wire Line
+	7250 3500 6600 3500
+Wire Wire Line
+	7250 3700 6600 3700
+Wire Wire Line
+	7250 3800 6600 3800
+Wire Wire Line
+	7250 3200 6600 3200
+Wire Wire Line
+	7250 3100 6600 3100
+Wire Wire Line
+	7250 3600 6600 3600
+Text Label 7250 3600 2    50   ~ 0
+common_cathode
+Wire Wire Line
+	5400 3800 5600 3800
+Text Label 5400 3800 0    50   ~ 0
+in7
+Wire Wire Line
+	5400 3500 5600 3500
+Text Label 5400 3500 0    50   ~ 0
+in4
+Wire Wire Line
+	7250 3300 6600 3300
+Wire Wire Line
+	7250 3400 6600 3400
+Text Label 7250 3300 2    50   ~ 0
+segment_b
+Text Label 7250 3400 2    50   ~ 0
+segment_a
+$EndSCHEMATC

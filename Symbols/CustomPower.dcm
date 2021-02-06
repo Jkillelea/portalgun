@@ -1,0 +1,14 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP NCP4589DSN33T1G
+D 3.3V Linear Regulator, SOT-23-5 Version
+K Linear Regulator 3.3V 3V3
+F https://datasheet.lcsc.com/szlcsc/1909041708_ON-Semicon-ON-NCP4589DSN33T1G_C415868.pdf
+$ENDCMP
+#
+$CMP VBAT
+D Power symbol creates a global label with name "VBAT"
+K power-flag
+$ENDCMP
+#
+#End Doc Library

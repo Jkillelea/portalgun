@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name wiring-rescue)(type Legacy)(uri ${KIPRJMOD}/wiring-rescue.lib)(options "")(descr ""))
+  (lib (name CustomPower)(type Legacy)(uri /home/jacob/Desktop/portalgun/Symbols/CustomPower.lib)(options "")(descr ""))
+  (lib (name BoostConverters)(type Legacy)(uri /home/jacob/Desktop/portalgun/Symbols/BoostConverters.lib)(options "")(descr ""))
+)

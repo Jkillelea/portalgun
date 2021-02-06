@@ -1,0 +1,7 @@
+(sym_lib_table
+  (lib (name BoostConverters)(type Legacy)(uri ${KIPRJMOD}/Symbols/BoostConverters.lib)(options "")(descr ""))
+  (lib (name CustomPower)(type Legacy)(uri ${KIPRJMOD}/Symbols/CustomPower.lib)(options "")(descr ""))
+  (lib (name SiliconLabs)(type Legacy)(uri ${KIPRJMOD}/Symbols/SiliconLabs.lib)(options "")(descr ""))
+  (lib (name CustomDisplay)(type Legacy)(uri ${KIPRJMOD}/Symbols/CustomDisplay.lib)(options "")(descr ""))
+  (lib (name AudioDac)(type Legacy)(uri ${KIPRJMOD}/Symbols/AudioDac.lib)(options "")(descr ""))
+)
