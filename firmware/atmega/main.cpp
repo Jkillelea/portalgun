@@ -11,6 +11,8 @@ extern "C" {
 #include <stdint.h>
 #include <math.h>
 
+#include "registers.h"
+
 #ifdef __cplusplus
 }
 #endif
@@ -66,23 +68,22 @@ void spi_slave_init(void)
     // MOSI = PB3
     // MISO = PB4
     // SCK  = PB5
-    SPI_DDR  = SPI_MISO;
-    SPI_PORT = SPI_MISO;
+    GpioB->ddr.b4  = 1;
+    GpioB->port.b4 = 1;
 
-    // SPR0 SPR1 CPHA CPOL MSTR DORD SPE SPIE
-    SPCR  = _BV(SPE);
-    SPCR |= _BV(SPIE); // interrupt, not firing on SS low?
+    SpiCtrl->spe  = 1;
+    SpiCtrl->spie = 1; // interrupt enable, not firing on SS low?
 }
 
 uint8_t spi_slave_transcieve(uint8_t data)
 {
     // Load data into shift register
-    SPDR = data;
+    SpiData = data;
     // wait for transmission complete
-    // while(!(SPSR & (1 << SPIF)));
-    while((SPSR & (1 << SPIF)));
+    // while((SPSR & (1 << SPIF)));
+    while (SpiStatus->spif);
     // return rx data
-    return SPDR;
+    return SpiData;
 }
 
 
@@ -96,14 +97,14 @@ int main(void)
     // CLKPR = _BV(CLKPS3); // clk prescaler, divide by 256
 
     // DDRD |= _BV(DD0) | _BV(DD1) | _BV(DD2) | _BV(DD3); // output
-    DDRC = 0xFF; // all output
-    DDRD = 0xFF; // all output
+    GpioC->ddr.byte = 0xFF; // all output
+    GpioD->ddr.byte = 0xFF; // all output
 
     spi_slave_init();
     configure_timer1(CS_Prescaler1, 0x0FFF);
 
-    PORTD = 0;
-    PORTC = 0xFF;
+    GpioD->port.byte = 0;
+    GpioC->port.byte = 0xFF;
 
     sei(); // enable interrupts
 

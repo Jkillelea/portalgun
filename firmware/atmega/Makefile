@@ -32,4 +32,5 @@ main.elf: main.cpp interrupts.c
 clean:
 	rm *.elf
 	rm *.hex
+	rm a.out
 

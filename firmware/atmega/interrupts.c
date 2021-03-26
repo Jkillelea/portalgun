@@ -2,6 +2,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdint.h>
+#include "registers.h"
 
 volatile int digit;
 
@@ -68,15 +69,15 @@ uint8_t num2segments(uint8_t num)
 
 // Timer 1 compare match
 ISR(TIMER1_COMPA_vect) {
-    if (PINC == 1)
+    if (GpioC->pin.b0)
     {
-        PORTD = num2segments(digit % 0x10);
-        PORTC = 2;
+        GpioD->port.byte = num2segments(digit % 0x10);
+        GpioC->port.b1 = 1;
     }
     else
     {
-        PORTD = num2segments(digit/0x10);
-        PORTC = 1;
+        GpioD->port.byte = num2segments(digit/0x10);
+        GpioC->port.b0 = 1;
     }
 }
 
