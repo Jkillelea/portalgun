@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Display_Kingbright)(type KiCad)(uri /home/jacob/Desktop/portalgun/Footprints/Display_Kingbright.pretty)(options "")(descr ""))
+)

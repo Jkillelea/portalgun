@@ -1,0 +1,283 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:VCC #PWR02
+U 1 1 6042BA80
+P 4150 3550
+F 0 "#PWR02" H 4150 3400 50  0001 C CNN
+F 1 "VCC" H 4165 3723 50  0000 C CNN
+F 2 "" H 4150 3550 50  0001 C CNN
+F 3 "" H 4150 3550 50  0001 C CNN
+	1    4150 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR05
+U 1 1 6042C1A4
+P 4150 4650
+F 0 "#PWR05" H 4150 4400 50  0001 C CNN
+F 1 "GND" H 4155 4477 50  0000 C CNN
+F 2 "" H 4150 4650 50  0001 C CNN
+F 3 "" H 4150 4650 50  0001 C CNN
+	1    4150 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 6042C629
+P 6500 3650
+F 0 "C1" H 6615 3696 50  0000 L CNN
+F 1 "1uf" H 6615 3605 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 6538 3500 50  0001 C CNN
+F 3 "~" H 6500 3650 50  0001 C CNN
+	1    6500 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x06 J2
+U 1 1 6043160C
+P 6100 4100
+F 0 "J2" H 6180 4092 50  0000 L CNN
+F 1 "Conn_01x06" H 6180 4001 50  0000 L CNN
+F 2 "Connector_PinSocket_2.00mm:PinSocket_1x06_P2.00mm_Vertical" H 6100 4100 50  0001 C CNN
+F 3 "~" H 6100 4100 50  0001 C CNN
+	1    6100 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR01
+U 1 1 60431E80
+P 5750 3150
+F 0 "#PWR01" H 5750 3000 50  0001 C CNN
+F 1 "VCC" H 5765 3323 50  0000 C CNN
+F 2 "" H 5750 3150 50  0001 C CNN
+F 3 "" H 5750 3150 50  0001 C CNN
+	1    5750 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 60432143
+P 5750 4000
+F 0 "#PWR04" H 5750 3750 50  0001 C CNN
+F 1 "GND" V 5755 3872 50  0000 R CNN
+F 2 "" H 5750 4000 50  0001 C CNN
+F 3 "" H 5750 4000 50  0001 C CNN
+	1    5750 4000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5750 4000 5900 4000
+Wire Wire Line
+	5900 3900 5750 3900
+Wire Wire Line
+	5750 3900 5750 3300
+Wire Wire Line
+	4650 3950 4950 3950
+Wire Wire Line
+	4950 3950 4950 4100
+Wire Wire Line
+	4950 4100 5000 4100
+Wire Wire Line
+	4650 4050 4900 4050
+Wire Wire Line
+	4900 4050 4900 4200
+Wire Wire Line
+	4900 4200 5000 4200
+Wire Wire Line
+	4650 4150 4850 4150
+Wire Wire Line
+	4850 4150 4850 4300
+Wire Wire Line
+	4850 4300 5000 4300
+$Comp
+L Connector:AVR-ISP-6 J3
+U 1 1 6042B63F
+P 4250 4150
+F 0 "J3" H 3921 4246 50  0000 R CNN
+F 1 "AVR-ISP-6" H 3921 4155 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" V 4000 4200 50  0001 C CNN
+F 3 " ~" H 2975 3600 50  0001 C CNN
+	1    4250 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 4250 4750 4250
+Wire Wire Line
+	4750 4250 4750 4400
+Wire Wire Line
+	4750 4400 5000 4400
+$Comp
+L power:GND #PWR03
+U 1 1 60437A20
+P 6500 3900
+F 0 "#PWR03" H 6500 3650 50  0001 C CNN
+F 1 "GND" H 6505 3727 50  0000 C CNN
+F 2 "" H 6500 3900 50  0001 C CNN
+F 3 "" H 6500 3900 50  0001 C CNN
+	1    6500 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 3300 6500 3300
+Wire Wire Line
+	6500 3300 6500 3450
+Wire Wire Line
+	6500 3800 6500 3850
+Connection ~ 5750 3300
+Wire Wire Line
+	5750 3300 5750 3150
+Wire Wire Line
+	4150 3550 4150 3650
+Wire Wire Line
+	4150 4550 4150 4650
+Text Label 5300 4100 0    50   ~ 0
+MISO
+Text Label 5300 4200 0    50   ~ 0
+MOSI
+Text Label 5300 4300 0    50   ~ 0
+SCK
+Text Label 5300 4400 0    50   ~ 0
+~RST
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 6043A139
+P 8100 3600
+F 0 "J1" H 8180 3592 50  0000 L CNN
+F 1 "Conn_01x02" H 8180 3501 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 8100 3600 50  0001 C CNN
+F 3 "~" H 8100 3600 50  0001 C CNN
+	1    8100 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6500 3450 6900 3450
+Wire Wire Line
+	7800 3450 7800 3600
+Wire Wire Line
+	7800 3600 7900 3600
+Connection ~ 6500 3450
+Wire Wire Line
+	6500 3450 6500 3500
+Wire Wire Line
+	6500 3850 7200 3850
+Wire Wire Line
+	7800 3850 7800 3700
+Wire Wire Line
+	7800 3700 7900 3700
+Connection ~ 6500 3850
+Wire Wire Line
+	6500 3850 6500 3900
+$Comp
+L Device:R R1
+U 1 1 6044016A
+P 5150 4100
+F 0 "R1" V 4943 4100 50  0000 C CNN
+F 1 "1k" V 5034 4100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5080 4100 50  0001 C CNN
+F 3 "~" H 5150 4100 50  0001 C CNN
+	1    5150 4100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 4100 5900 4100
+$Comp
+L Device:R R2
+U 1 1 6044088F
+P 5150 4200
+F 0 "R2" V 4943 4200 50  0000 C CNN
+F 1 "1k" V 5034 4200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5080 4200 50  0001 C CNN
+F 3 "~" H 5150 4200 50  0001 C CNN
+	1    5150 4200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 4200 5900 4200
+$Comp
+L Device:R R3
+U 1 1 60440AD5
+P 5150 4300
+F 0 "R3" V 4943 4300 50  0000 C CNN
+F 1 "1k" V 5034 4300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5080 4300 50  0001 C CNN
+F 3 "~" H 5150 4300 50  0001 C CNN
+	1    5150 4300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 4300 5900 4300
+$Comp
+L Device:R R4
+U 1 1 60440D8F
+P 5150 4400
+F 0 "R4" V 4943 4400 50  0000 C CNN
+F 1 "1k" V 5034 4400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" V 5080 4400 50  0001 C CNN
+F 3 "~" H 5150 4400 50  0001 C CNN
+	1    5150 4400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5300 4400 5900 4400
+Wire Wire Line
+	7400 3450 7500 3450
+Wire Wire Line
+	7200 3750 7200 3850
+Connection ~ 7200 3850
+Wire Wire Line
+	7200 3850 7800 3850
+$Comp
+L Device:Q_PMOS_GSD Q1
+U 1 1 60447A65
+P 7200 3550
+F 0 "Q1" V 7542 3550 50  0000 C CNN
+F 1 "Si2333CDS" V 7451 3550 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7400 3650 50  0001 C CNN
+F 3 "~" H 7200 3550 50  0001 C CNN
+	1    7200 3550
+	0    1    -1   0   
+$EndComp
+$Comp
+L Jumper:SolderJumper_2_Open JP1
+U 1 1 6044A410
+P 7200 3050
+F 0 "JP1" H 7200 3255 50  0000 C CNN
+F 1 "SolderJumper_2_Open" H 7200 3164 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_Pad1.0x1.5mm" H 7200 3050 50  0001 C CNN
+F 3 "~" H 7200 3050 50  0001 C CNN
+	1    7200 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 3050 7500 3050
+Wire Wire Line
+	7500 3050 7500 3450
+Connection ~ 7500 3450
+Wire Wire Line
+	7500 3450 7800 3450
+Wire Wire Line
+	7050 3050 6900 3050
+Wire Wire Line
+	6900 3050 6900 3450
+Connection ~ 6900 3450
+Wire Wire Line
+	6900 3450 7000 3450
+Text Label 7550 3450 0    50   ~ 0
+Vraw+
+Text Label 7550 3850 0    50   ~ 0
+Vraw-
+$EndSCHEMATC

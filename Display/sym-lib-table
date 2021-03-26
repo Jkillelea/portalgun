@@ -1,0 +1,7 @@
+(sym_lib_table
+  (lib (name AudioDac)(type Legacy)(uri /home/jacob/Desktop/portalgun/Symbols/AudioDac.lib)(options "")(descr ""))
+  (lib (name BoostConverters)(type Legacy)(uri /home/jacob/Desktop/portalgun/Symbols/BoostConverters.lib)(options "")(descr ""))
+  (lib (name CustomDisplay)(type Legacy)(uri /home/jacob/Desktop/portalgun/Symbols/CustomDisplay.lib)(options "")(descr ""))
+  (lib (name CustomPower)(type Legacy)(uri /home/jacob/Desktop/portalgun/Symbols/CustomPower.lib)(options "")(descr ""))
+  (lib (name SiliconLabs)(type Legacy)(uri /home/jacob/Desktop/portalgun/Symbols/SiliconLabs.lib)(options "")(descr ""))
+)
