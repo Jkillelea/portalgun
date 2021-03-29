@@ -67,7 +67,7 @@ void spi_slave_init(void)
     // MOSI = PB3
     // MISO = PB4
     // SCK  = PB5
-    GpioB->ddr.b4  = 1;
+    GpioB->ddr.b4  = GPIO_OUT;
     GpioB->port.b4 = 1;
 
     SpiCtrl->spe  = 1;
@@ -142,17 +142,17 @@ int main(void)
     cli(); // no interrupts
 
     // Display pin directions
-    GpioD->ddr.byte = 0xFF; // segments on port D, all output
-    GpioB->ddr.b0 = 1; // digit selectors
-    GpioB->ddr.b1 = 1;
-    GpioC->ddr.b0 = 1;
-    GpioC->ddr.b1 = 1;
+    GpioD->ddr.byte = 0xFF;     // Segments on port D, all output
+    GpioB->ddr.b0   = GPIO_OUT; // Digit selectors
+    GpioB->ddr.b1   = GPIO_OUT;
+    GpioC->ddr.b0   = GPIO_OUT;
+    GpioC->ddr.b1   = GPIO_OUT;
 
     // spi_slave_init();
     configure_timer1(CS_Prescaler1, 0x0FFF);
 
-    GpioD->port.byte = 0; // all segments off
-    selectDigit(-1);      // all digits off
+    GpioD->port.byte = 0; // All segments off
+    selectDigit(-1);      // All digits off
 
     // Disable for debugging
     sei(); // enable interrupts, disable for debugging

@@ -3,32 +3,32 @@
         "arguments": [
             "avr-g++",
             "-c",
-            "-mmcu=atmega88",
+            "-mmcu=atmega48",
             "-I/usr/lib/avr/include",
             "-O3",
-            "-DF_CPU=8000000L",
-            "-D__AVR_ATmega88__",
+            "-DF_CPU=16000000UL",
+            "-D__AVR_ATmega48__",
             "-o",
-            "main.elf",
-            "main.cpp"
+            "main.o",
+            "main.c"
         ],
-        "directory": "/home/jacob/Documents/KiCad/atmega88-breakout/firmware",
-        "file": "main.cpp"
+        "directory": "/home/jacob/Desktop/portalgun/firmware/atmega",
+        "file": "main.c"
     },
     {
         "arguments": [
             "avr-g++",
             "-c",
-            "-mmcu=atmega88",
+            "-mmcu=atmega48",
             "-I/usr/lib/avr/include",
             "-O3",
-            "-DF_CPU=8000000L",
-            "-D__AVR_ATmega88__",
+            "-DF_CPU=16000000UL",
+            "-D__AVR_ATmega48__",
             "-o",
-            "main.elf",
+            "interrupts.o",
             "interrupts.c"
         ],
-        "directory": "/home/jacob/Documents/KiCad/atmega88-breakout/firmware",
+        "directory": "/home/jacob/Desktop/portalgun/firmware/atmega",
         "file": "interrupts.c"
     }
 ]

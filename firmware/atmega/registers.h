@@ -7,9 +7,11 @@
 #include <stdint.h>
 #include <avr/sfr_defs.h>
 
-typedef union {
+typedef union
+{
     uint8_t byte;
-    struct {
+    struct
+    {
         uint8_t b0 : 1;
         uint8_t b1 : 1;
         uint8_t b2 : 1;
@@ -21,23 +23,28 @@ typedef union {
     };
 } RegisterBits_t;
 
-typedef struct {
+typedef struct
+{
     RegisterBits_t pin;
     RegisterBits_t ddr;
     RegisterBits_t port;
 } GPIOControl;
+
 #define GpioB ((volatile GPIOControl *) 0x23)
 #define GpioC ((volatile GPIOControl *) 0x26)
 #define GpioD ((volatile GPIOControl *) 0x29)
 
-typedef enum {
+typedef enum
+{
     GPIO_IN  = 0,
     GPIO_OUT = 1,
 } GPIODirection;
 
-typedef union {
+typedef union
+{
     uint8_t byte;
-    struct {
+    struct
+    {
         uint8_t spr0 : 1;
         uint8_t spr1 : 1;
         uint8_t cpha : 1;
@@ -48,11 +55,14 @@ typedef union {
         uint8_t spie : 1;
     };
 } SPICR_t;
+
 #define SpiCtrl ((volatile SPICR_t *) 0x4C)
 
-typedef union {
+typedef union
+{
     uint8_t byte;
-    struct {
+    struct
+    {
         uint8_t spi2x : 1;
         uint8_t b1    : 1;
         uint8_t b2    : 1;
@@ -63,6 +73,7 @@ typedef union {
         uint8_t spif  : 1;
     };
 } SPSR_t;
+
 #define SpiStatus ((volatile SPSR_t *) 0x4D)
 
 #define SpiData (*(volatile uint8_t *) 0x4E) // data register is just a byte
