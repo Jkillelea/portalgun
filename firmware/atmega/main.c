@@ -18,6 +18,9 @@
 #define SPI_MISO _BV(PB4)
 #define SPI_SCK  _BV(PB5)
 
+/* Number to render to display. Accessed in ISRs */
+volatile uint16_t g_DisplayNumber = 0;
+
 enum ClockSelectBits
 {
     CS_TimerOff           =  0,
@@ -44,15 +47,16 @@ void configure_timer1(uint8_t prescalerBits, uint16_t top) {
 
     TCCR1B |= prescalerBits;
 
-    // Clear timer on compare match with OCR1A or go all the way to 0xFFFF
-    uint16_t timerMaxCount = 0xFFFF;
-
+    // Clear timer on compare match with OCR1A
     if (top)
     {
-        timerMaxCount = top;
+        OCR1A = top;
+    }
+    else
+    {
+        OCR1A = 0xFFFF;
     }
 
-    OCR1A   = timerMaxCount;
     TCCR1B |= _BV(WGM12);  // CTC mode
     TIMSK1 |= _BV(OCIE1A); // compare-match-clear interrupt
 }
@@ -133,7 +137,6 @@ uint8_t num2segments(unsigned num)
 }
 
 
-volatile int number = 0;
 int main(void)
 {
     cli(); // no interrupts
@@ -160,7 +163,7 @@ int main(void)
         // __builtin_avr_delay_cycles(2000000/2);
         // GpioD->port.byte = 0;
         // __builtin_avr_delay_cycles(2000000/2);
-        number++;
+        g_DisplayNumber++;
         __builtin_avr_delay_cycles(10000000);
     }
 

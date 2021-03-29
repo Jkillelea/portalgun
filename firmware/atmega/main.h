@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+extern volatile uint16_t g_DisplayNumber;
+
 uint8_t num2segments(unsigned num);
 void selectDigit(int digit);
 

@@ -7,13 +7,12 @@
 #include "registers.h"
 #include "display_segments.h"
 
-extern int number;
 volatile int digit  = 0;
 
 // SPI interrupt
 ISR(SPI_STC_vect)
 {
-    number = SPDR;
+    g_DisplayNumber = (g_DisplayNumber << 8) | SPDR;
 }
 
 // Timer 1 overflow
@@ -24,7 +23,8 @@ ISR(TIMER1_OVF_vect)
 // Timer 1 compare match
 ISR(TIMER1_COMPA_vect)
 {
-    GpioD->port.byte = num2segments((number >> 4*digit) & 0x0F); // render a nybble
+    // render a nybble
+    GpioD->port.byte = num2segments((g_DisplayNumber >> 4*digit) & 0x0F);
     selectDigit(digit);
     digit = (digit + 1) % 4;
 }
