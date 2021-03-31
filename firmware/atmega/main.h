@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 extern volatile uint16_t g_DisplayNumber;
+extern volatile uint8_t  g_DisplayRenderBuffer[4];
 
 uint8_t num2segments(unsigned num);
 void selectDigit(int digit);

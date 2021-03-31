@@ -13,6 +13,7 @@
 
 /* Number to render to display. Accessed in ISRs */
 volatile uint16_t g_DisplayNumber = 0;
+volatile uint8_t  g_DisplayRenderBuffer[4] = {0};
 
 enum ClockSelectBits
 {
@@ -159,7 +160,13 @@ int main(void)
     while (1)
     {
         g_DisplayNumber++;
-        __builtin_avr_delay_cycles(10000);
+
+        g_DisplayRenderBuffer[0] = num2segments((g_DisplayNumber >>  0) & 0x0F);
+        g_DisplayRenderBuffer[1] = num2segments((g_DisplayNumber >>  4) & 0x0F);
+        g_DisplayRenderBuffer[2] = num2segments((g_DisplayNumber >>  8) & 0x0F);
+        g_DisplayRenderBuffer[3] = num2segments((g_DisplayNumber >> 12) & 0x0F);
+
+        __builtin_avr_delay_cycles(1000);
     }
 
     return 0; // should never reach the end
