@@ -11,26 +11,19 @@
 #include "display_segments.h"
 #include "registers.h"
 
-#define SPI_DDR  DDRB
-#define SPI_PORT PORTB
-#define SPI_SS   _BV(PB2)
-#define SPI_MOSI _BV(PB3)
-#define SPI_MISO _BV(PB4)
-#define SPI_SCK  _BV(PB5)
-
 /* Number to render to display. Accessed in ISRs */
 volatile uint16_t g_DisplayNumber = 0;
 
 enum ClockSelectBits
 {
-    CS_TimerOff           =  0,
-    CS_Prescaler1         =  _BV(CS10),
-    CS_Prescaler8         =  _BV(CS11),
-    CS_Prescaler64        =  _BV(CS11) | _BV(CS10),
-    CS_Prescaler256       =  _BV(CS12),
-    CS_Prescaler1024      =  _BV(CS12) | _BV(CS10),
-    CS_ClockT1PinRising   =  _BV(CS12) | _BV(CS11),
-    CS_ClockT1PinFalling  =  _BV(CS12) | _BV(CS11) | _BV(CS10),
+    CS_TimerOff          = 0,
+    CS_Prescaler1        = _BV(CS10),
+    CS_Prescaler8        = _BV(CS11),
+    CS_Prescaler64       = _BV(CS11) | _BV(CS10),
+    CS_Prescaler256      = _BV(CS12),
+    CS_Prescaler1024     = _BV(CS12) | _BV(CS10),
+    CS_ClockT1PinRising  = _BV(CS12) | _BV(CS11),
+    CS_ClockT1PinFalling = _BV(CS12) | _BV(CS11) | _BV(CS10),
 };
 
 // Configure Timer 1 for a count up to clear timer compare match
@@ -63,15 +56,20 @@ void configure_timer1(uint8_t prescalerBits, uint16_t top) {
 
 void spi_slave_init(void)
 {
+    // These three pins are configured automatically
     // SS   = PB2
+    GpioB->ddr.b2  = GPIO_IN;
     // MOSI = PB3
-    // MISO = PB4
+    GpioB->ddr.b3  = GPIO_IN;
     // SCK  = PB5
+    GpioB->ddr.b5  = GPIO_IN;
+    // This pin must be configured manually
+    // MISO = PB4
     GpioB->ddr.b4  = GPIO_OUT;
-    GpioB->port.b4 = 1;
+    GpioB->port.b4 = GPIO_HIGH;
 
-    SpiCtrl->spe  = 1;
-    SpiCtrl->spie = 1; // interrupt enable, not firing on SS low?
+    SpiCtrl->spe  = 1; // Enable peripheral
+    SpiCtrl->spie = 1; // Interrupt enable, not firing on SS low?
 }
 
 uint8_t spi_slave_transcieve(uint8_t data)
@@ -111,22 +109,22 @@ void selectDigit(int digit)
 }
 
 uint8_t segmentLUT[] = {
-            SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F,         // 0x00
-            SEG_B | SEG_C,                                         // 0x01
-            SEG_A | SEG_B | SEG_G | SEG_E | SEG_D,                 // 0x02
-            SEG_A | SEG_B | SEG_G | SEG_C | SEG_D,                 // 0x03
-            SEG_F | SEG_B | SEG_G | SEG_C,                         // 0x04
-            SEG_A | SEG_F | SEG_G | SEG_C | SEG_D,                 // 0x05
-            SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G,         // 0x06
-            SEG_A | SEG_B | SEG_C,                                 // 0x07
-            SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G, // 0x08
-            SEG_A | SEG_B | SEG_C | SEG_G | SEG_F,                 // 0x09
-            SEG_A | SEG_B | SEG_C | SEG_G | SEG_E | SEG_F,         // 0x0A
-            SEG_F | SEG_G | SEG_E | SEG_D | SEG_C,                 // 0x0B
-            SEG_A | SEG_F | SEG_E | SEG_D,                         // 0x0C
-            SEG_B | SEG_C | SEG_G | SEG_D | SEG_E,                 // 0x0D
-            SEG_A | SEG_F | SEG_E | SEG_G | SEG_D,                 // 0x0E
-            SEG_A | SEG_F | SEG_E | SEG_G                          // 0x0F
+            SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F,         // 0
+            SEG_B | SEG_C,                                         // 1
+            SEG_A | SEG_B | SEG_G | SEG_E | SEG_D,                 // 2
+            SEG_A | SEG_B | SEG_G | SEG_C | SEG_D,                 // 3
+            SEG_F | SEG_B | SEG_G | SEG_C,                         // 4
+            SEG_A | SEG_F | SEG_G | SEG_C | SEG_D,                 // 5
+            SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G,         // 6
+            SEG_A | SEG_B | SEG_C,                                 // 7
+            SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G, // 8
+            SEG_A | SEG_B | SEG_C | SEG_G | SEG_F,                 // 9
+            SEG_A | SEG_B | SEG_C | SEG_G | SEG_E | SEG_F,         // A
+            SEG_F | SEG_G | SEG_E | SEG_D | SEG_C,                 // b
+            SEG_A | SEG_F | SEG_E | SEG_D,                         // C
+            SEG_B | SEG_C | SEG_G | SEG_D | SEG_E,                 // d
+            SEG_A | SEG_F | SEG_E | SEG_G | SEG_D,                 // E
+            SEG_A | SEG_F | SEG_E | SEG_G                          // F
 };
 
 uint8_t num2segments(unsigned num)
@@ -148,23 +146,20 @@ int main(void)
     GpioC->ddr.b0   = GPIO_OUT;
     GpioC->ddr.b1   = GPIO_OUT;
 
-    // spi_slave_init();
+    spi_slave_init();
     configure_timer1(CS_Prescaler1, 0x0FFF);
 
     GpioD->port.byte = 0; // All segments off
     selectDigit(-1);      // All digits off
 
-    // Disable for debugging
+    __builtin_avr_delay_cycles(10000000);
+
     sei(); // enable interrupts, disable for debugging
 
     while (1)
     {
-        // GpioD->port.byte = b++;
-        // __builtin_avr_delay_cycles(2000000/2);
-        // GpioD->port.byte = 0;
-        // __builtin_avr_delay_cycles(2000000/2);
         g_DisplayNumber++;
-        __builtin_avr_delay_cycles(10000000);
+        __builtin_avr_delay_cycles(10000);
     }
 
     return 0; // should never reach the end

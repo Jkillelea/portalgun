@@ -40,6 +40,12 @@ typedef enum
     GPIO_OUT = 1,
 } GPIODirection;
 
+typedef enum
+{
+    GPIO_LOW  = 0,
+    GPIO_HIGH = 1,
+} GPIOValue;
+
 typedef union
 {
     uint8_t byte;
@@ -77,5 +83,22 @@ typedef union
 #define SpiStatus ((volatile SPSR_t *) 0x4D)
 
 #define SpiData (*(volatile uint8_t *) 0x4E) // data register is just a byte
+
+typedef union
+{
+    uint8_t byte;
+    struct {
+        uint8_t wgm10  : 1; // 0
+        uint8_t wgm11  : 1; // 1
+        uint8_t        : 1; // 2
+        uint8_t        : 1; // 3
+        uint8_t com1b0 : 1; // 4
+        uint8_t com1b1 : 1; // 5
+        uint8_t com1a0 : 1; // 6
+        uint8_t com1a1 : 1; // 7
+    };
+} TCCR1A_t;
+
+// #define Tccr1A ((volatile TCCR1A_t *) 0xA0)
 
 #endif // _AVR_REGISTERS_H_
