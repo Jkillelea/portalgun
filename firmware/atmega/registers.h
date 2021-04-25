@@ -25,20 +25,22 @@ typedef union
 
 typedef struct
 {
-    RegisterBits_t pin;
-    RegisterBits_t ddr;
-    RegisterBits_t port;
+    RegisterBits_t pin;  // Read-only always available access
+    RegisterBits_t ddr;  // Data direction
+    RegisterBits_t port; // Read-write pin access
 } GPIOControl;
 
 #define GpioB ((volatile GPIOControl *) 0x23)
 #define GpioC ((volatile GPIOControl *) 0x26)
 #define GpioD ((volatile GPIOControl *) 0x29)
 
+/* Data direction enum for use with GPIO DDR registers
+ */
 typedef enum
 {
-    GPIO_IN  = 0,
-    GPIO_OUT = 1,
-} GPIODirection;
+    DDR_IN  = 0,
+    DDR_OUT = 1,
+} DDR_t;
 
 typedef enum
 {
@@ -70,11 +72,11 @@ typedef union
     struct
     {
         uint8_t spi2x : 1;
-        uint8_t b1    : 1;
-        uint8_t b2    : 1;
-        uint8_t b3    : 1;
-        uint8_t b4    : 1;
-        uint8_t b5    : 1;
+        uint8_t       : 1;
+        uint8_t       : 1;
+        uint8_t       : 1;
+        uint8_t       : 1;
+        uint8_t       : 1;
         uint8_t wcol  : 1;
         uint8_t spif  : 1;
     };

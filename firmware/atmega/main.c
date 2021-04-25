@@ -59,14 +59,14 @@ void spi_slave_init(void)
 {
     // These three pins are configured automatically
     // SS   = PB2
-    GpioB->ddr.b2  = GPIO_IN;
+    GpioB->ddr.b2  = DDR_IN;
     // MOSI = PB3
-    GpioB->ddr.b3  = GPIO_IN;
+    GpioB->ddr.b3  = DDR_IN;
     // SCK  = PB5
-    GpioB->ddr.b5  = GPIO_IN;
+    GpioB->ddr.b5  = DDR_IN;
     // This pin must be configured manually
     // MISO = PB4
-    GpioB->ddr.b4  = GPIO_OUT;
+    GpioB->ddr.b4  = DDR_OUT;
     GpioB->port.b4 = GPIO_HIGH;
 
     SpiCtrl->spe  = 1; // Enable peripheral
@@ -84,14 +84,14 @@ uint8_t spi_slave_transcieve(uint8_t data)
     return SpiData;
 }
 
-void selectDigit(int digit)
+void selectDigit(int d)
 {
     GpioC->port.b0 = 0;
     GpioC->port.b1 = 0;
     GpioB->port.b0 = 0;
     GpioB->port.b1 = 0;
 
-    switch (digit) {
+    switch (d) {
         case 0:
             GpioC->port.b0 = 1;
             break;
@@ -142,13 +142,13 @@ int main(void)
 
     // Display pin directions
     GpioD->ddr.byte = 0xFF;     // Segments on port D, all output
-    GpioB->ddr.b0   = GPIO_OUT; // Digit selectors
-    GpioB->ddr.b1   = GPIO_OUT;
-    GpioC->ddr.b0   = GPIO_OUT;
-    GpioC->ddr.b1   = GPIO_OUT;
+    GpioB->ddr.b0   = DDR_OUT; // Digit selectors
+    GpioB->ddr.b1   = DDR_OUT;
+    GpioC->ddr.b0   = DDR_OUT;
+    GpioC->ddr.b1   = DDR_OUT;
 
     spi_slave_init();
-    configure_timer1(CS_Prescaler1, 0x0FFF);
+    configure_timer1(CS_Prescaler8, 0x0FFF);
 
     GpioD->port.byte = 0; // All segments off
     selectDigit(-1);      // All digits off
@@ -166,7 +166,7 @@ int main(void)
         g_DisplayRenderBuffer[2] = num2segments((g_DisplayNumber >>  8) & 0x0F);
         g_DisplayRenderBuffer[3] = num2segments((g_DisplayNumber >> 12) & 0x0F);
 
-        __builtin_avr_delay_cycles(1000);
+        __builtin_avr_delay_cycles(100000);
     }
 
     return 0; // should never reach the end
