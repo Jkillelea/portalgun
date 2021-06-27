@@ -1,5 +1,5 @@
 Drill report for /home/jacob/Desktop/portalgun/portalgun.kicad_pcb
-Created on Wed 17 Mar 2021 09:41:28 PM CDT
+Created on Sat 26 Jun 2021 03:26:51 PM CDT
 
 Copper Layer Stackup:
     =============================================================
@@ -12,18 +12,18 @@ Copper Layer Stackup:
 Drill file 'portalgun-PTH.drl' contains
     plated through holes:
     =============================================================
-    T1  0.38mm  0.015"  (3 holes)
-    T2  0.40mm  0.016"  (87 holes)
-    T3  0.50mm  0.020"  (11 holes)
-    T4  0.80mm  0.031"  (10 holes)
-    T5  1.00mm  0.039"  (8 holes)
+    T1  0.300mm  0.0118"  (43 holes)
+    T2  0.381mm  0.0150"  (7 holes)
+    T3  0.400mm  0.0157"  (52 holes)
+    T4  0.500mm  0.0197"  (11 holes)
+    T5  1.000mm  0.0394"  (18 holes)
 
-    Total plated holes count 119
+    Total plated holes count 131
 
 
 Drill file 'portalgun-NPTH.drl' contains
     unplated through holes:
     =============================================================
-    T1  2.50mm  0.098"  (2 holes)
+    T1  2.500mm  0.0984"  (2 holes)
 
     Total unplated holes count 2
