@@ -1,7 +1,7 @@
 CC = avr-g++ -mmcu=atmega48
 OBJCOPY = avr-objcopy
 LD = avr-ld
-PROGTOOL = avrdude -qq -p m48
+PROGTOOL = avrdude -p m48
 PROGPROTOCOL = avrispmkii
 
 CFLAGS = -I/usr/lib/avr/include
@@ -12,7 +12,7 @@ CFLAGS += -D__AVR_ATmega48__
 .PHONY: all
 all: flash
 
-# # don't need to call multiple times
+# don't need to call multiple times
 .PHONY: fuses
 fuses:
 # ATMega48
@@ -36,8 +36,8 @@ main.elf: main.o interrupts.o
 
 .PHONY: clean
 clean:
-	rm *.o
-	rm *.elf
-	rm *.hex
-	rm a.out
+	rm -f *.o
+	rm -f *.elf
+	rm -f *.hex
+	rm -f a.out
 

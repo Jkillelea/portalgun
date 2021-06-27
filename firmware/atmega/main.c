@@ -59,11 +59,11 @@ void spi_slave_init(void)
 {
     // These three pins are configured automatically
     // SS   = PB2
-    GpioB->ddr.b2  = DDR_IN;
+    GpioB->ddr.b2 = DDR_IN;
     // MOSI = PB3
-    GpioB->ddr.b3  = DDR_IN;
+    GpioB->ddr.b3 = DDR_IN;
     // SCK  = PB5
-    GpioB->ddr.b5  = DDR_IN;
+    GpioB->ddr.b5 = DDR_IN;
     // This pin must be configured manually
     // MISO = PB4
     GpioB->ddr.b4  = DDR_OUT;
@@ -135,9 +135,17 @@ uint8_t num2segments(unsigned num)
     return SEG_G;
 }
 
+void renderNumberToBuffer(uint16_t num)
+{
+    g_DisplayRenderBuffer[0] = num2segments((num >>  0) & 0x0F);
+    g_DisplayRenderBuffer[1] = num2segments((num >>  4) & 0x0F);
+    g_DisplayRenderBuffer[2] = num2segments((num >>  8) & 0x0F);
+    g_DisplayRenderBuffer[3] = num2segments((num >> 12) & 0x0F);
+}
 
 int main(void)
 {
+    // Setup Code
     cli(); // no interrupts
 
     // Display pin directions
@@ -153,9 +161,11 @@ int main(void)
     GpioD->port.byte = 0; // All segments off
     selectDigit(-1);      // All digits off
 
-    __builtin_avr_delay_cycles(10000000);
-
     sei(); // enable interrupts, disable for debugging
+
+    g_DisplayNumber = 0xC137;
+    renderNumberToBuffer(g_DisplayNumber);
+    __builtin_avr_delay_cycles(3*F_CPU);
 
     while (1)
     {
@@ -166,7 +176,7 @@ int main(void)
         g_DisplayRenderBuffer[2] = num2segments((g_DisplayNumber >>  8) & 0x0F);
         g_DisplayRenderBuffer[3] = num2segments((g_DisplayNumber >> 12) & 0x0F);
 
-        __builtin_avr_delay_cycles(100000);
+        __builtin_avr_delay_cycles(F_CPU / 16); // roughly 16 counts per second
     }
 
     return 0; // should never reach the end
