@@ -7,7 +7,7 @@
 #include "registers.h"
 #include "display_segments.h"
 
-// Digit cycling variable
+// Digit cycling variable, telling the interrupts which digit to render
 volatile int digit = 0;
 
 /* SPI interrupt
@@ -36,13 +36,8 @@ ISR(TIMER1_OVF_vect)
  */
 ISR(TIMER1_COMPA_vect)
 {
-    // render a nybble
-    if (digit < 4)
-    {
-        GpioD->port.byte = 0;
-        selectDigit(digit);
-        GpioD->port.byte = g_DisplayRenderBuffer[digit];
-    }
-    digit = (digit + 1) % 4;
+    selectDigit(digit);
+    GpioD->port.byte = g_DisplayRenderBuffer[digit];
+    digit = (digit + 1) % DISPLAY_SIZE;
 }
 

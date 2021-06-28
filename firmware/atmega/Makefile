@@ -27,7 +27,7 @@ flash: main.hex
 main.hex: main.elf
 	$(OBJCOPY) -O ihex -R .eeprom $^ $@
 
-main.elf: main.o interrupts.o
+main.elf: main.o interrupts.o segments.c
 	$(CC) $(CFLAGS) -o $@ $^
 	$(LD) --print-memory-usage $@
 

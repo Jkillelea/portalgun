@@ -13,7 +13,7 @@
 
 /* Number to render to display. Accessed in ISRs */
 volatile uint16_t g_DisplayNumber = 0;
-volatile uint8_t  g_DisplayRenderBuffer[4] = {0};
+volatile uint8_t  g_DisplayRenderBuffer[DISPLAY_SIZE] = {0};
 
 enum ClockSelectBits
 {
@@ -109,29 +109,10 @@ void selectDigit(int d)
     return;
 }
 
-uint8_t segmentLUT[] = {
-            SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F,         // 0
-            SEG_B | SEG_C,                                         // 1
-            SEG_A | SEG_B | SEG_G | SEG_E | SEG_D,                 // 2
-            SEG_A | SEG_B | SEG_G | SEG_C | SEG_D,                 // 3
-            SEG_F | SEG_B | SEG_G | SEG_C,                         // 4
-            SEG_A | SEG_F | SEG_G | SEG_C | SEG_D,                 // 5
-            SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G,         // 6
-            SEG_A | SEG_B | SEG_C,                                 // 7
-            SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G, // 8
-            SEG_A | SEG_B | SEG_C | SEG_G | SEG_F,                 // 9
-            SEG_A | SEG_B | SEG_C | SEG_G | SEG_E | SEG_F,         // A
-            SEG_F | SEG_G | SEG_E | SEG_D | SEG_C,                 // b
-            SEG_A | SEG_F | SEG_E | SEG_D,                         // C
-            SEG_B | SEG_C | SEG_G | SEG_D | SEG_E,                 // d
-            SEG_A | SEG_F | SEG_E | SEG_G | SEG_D,                 // E
-            SEG_A | SEG_F | SEG_E | SEG_G                          // F
-};
-
 uint8_t num2segments(unsigned num)
 {
     if (num <= 0x0F)
-        return segmentLUT[num];
+        return SEGMENT_LUT[num];
     return SEG_G;
 }
 
@@ -149,7 +130,16 @@ int main(void)
     cli(); // no interrupts
 
     // Display pin directions
-    GpioD->ddr.byte = 0xFF;     // Segments on port D, all output
+    // GpioD->ddr.byte = 0xFF;   // Segments on port D, all output
+    GpioD->ddr.b0   = DDR_OUT; // Digit selectors
+    GpioD->ddr.b1   = DDR_OUT; // Digit selectors
+    GpioD->ddr.b2   = DDR_OUT; // Digit selectors
+    GpioD->ddr.b3   = DDR_OUT; // Digit selectors
+    GpioD->ddr.b4   = DDR_OUT; // Digit selectors
+    GpioD->ddr.b5   = DDR_OUT; // Digit selectors
+    GpioD->ddr.b6   = DDR_OUT; // Digit selectors
+    GpioD->ddr.b7   = DDR_OUT; // Digit selectors
+
     GpioB->ddr.b0   = DDR_OUT; // Digit selectors
     GpioB->ddr.b1   = DDR_OUT;
     GpioC->ddr.b0   = DDR_OUT;
@@ -165,17 +155,12 @@ int main(void)
 
     g_DisplayNumber = 0xC137;
     renderNumberToBuffer(g_DisplayNumber);
-    __builtin_avr_delay_cycles(3*F_CPU);
+    // __builtin_avr_delay_cycles(3*F_CPU);
 
     while (1)
     {
         g_DisplayNumber++;
-
-        g_DisplayRenderBuffer[0] = num2segments((g_DisplayNumber >>  0) & 0x0F);
-        g_DisplayRenderBuffer[1] = num2segments((g_DisplayNumber >>  4) & 0x0F);
-        g_DisplayRenderBuffer[2] = num2segments((g_DisplayNumber >>  8) & 0x0F);
-        g_DisplayRenderBuffer[3] = num2segments((g_DisplayNumber >> 12) & 0x0F);
-
+        renderNumberToBuffer(g_DisplayNumber);
         __builtin_avr_delay_cycles(F_CPU / 16); // roughly 16 counts per second
     }
 
