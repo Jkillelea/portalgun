@@ -13,25 +13,25 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text HLabel 8300 4100 2    50   Output ~ 0
+Text HLabel 7600 4100 2    50   Output ~ 0
 AOUT+
-Text HLabel 8300 4200 2    50   Output ~ 0
+Text HLabel 7600 4200 2    50   Output ~ 0
 AOUT-
 Wire Wire Line
-	7450 4200 8300 4200
-Text HLabel 5200 3750 0    50   Input ~ 0
+	7450 4200 7600 4200
+Text HLabel 4850 3900 0    50   Input ~ 0
 I2S_LRCIN
-Text HLabel 4250 3800 0    50   Input ~ 0
+Text HLabel 4850 4000 0    50   Input ~ 0
 I2S_BCLK
 $Comp
 L power:+3.3V #PWR0119
 U 1 1 6029BD20
-P 6850 2750
-F 0 "#PWR0119" H 6850 2600 50  0001 C CNN
-F 1 "+3.3V" H 6865 2923 50  0000 C CNN
-F 2 "" H 6850 2750 50  0001 C CNN
-F 3 "" H 6850 2750 50  0001 C CNN
-	1    6850 2750
+P 6850 2850
+F 0 "#PWR0119" H 6850 2700 50  0001 C CNN
+F 1 "+3.3V" H 6865 3023 50  0000 C CNN
+F 2 "" H 6850 2850 50  0001 C CNN
+F 3 "" H 6850 2850 50  0001 C CNN
+	1    6850 2850
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -72,47 +72,47 @@ F 3 "" H 6800 4950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7450 4100 8300 4100
-Text HLabel 5850 3600 0    50   Input ~ 0
+	7450 4100 7600 4100
+Text HLabel 4850 3800 0    50   Input ~ 0
 I2S_DIN
 Wire Wire Line
-	5400 4000 6350 4000
+	5550 4000 6350 4000
 $Comp
 L Connector:TestPoint TP4
 U 1 1 60750D00
-P 5300 4000
-F 0 "TP4" V 5450 4072 50  0000 C CNN
-F 1 "I2S_LRCIN_TP" V 5550 4072 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 5500 4000 50  0001 C CNN
-F 3 "~" H 5500 4000 50  0001 C CNN
-	1    5300 4000
+P 5450 4000
+F 0 "TP4" V 5255 4072 50  0000 C CNN
+F 1 "I2S_LRCIN_TP" V 5346 4072 50  0000 C CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 5650 4000 50  0001 C CNN
+F 3 "~" H 5650 4000 50  0001 C CNN
+	1    5450 4000
 	0    -1   1    0   
 $EndComp
-Connection ~ 5400 4000
+Connection ~ 5550 4000
 Wire Wire Line
-	5400 3750 5400 4000
+	5550 3900 5550 4000
 Wire Wire Line
-	5200 3750 5400 3750
+	4850 3900 5550 3900
 Wire Wire Line
-	4250 3800 4600 3800
+	4850 4000 5200 4000
 Wire Wire Line
-	4600 3800 4600 4100
+	5200 4000 5200 4100
 Wire Wire Line
-	4600 4100 6350 4100
+	5200 4100 6350 4100
 $Comp
 L Connector:TestPoint TP5
 U 1 1 6075ABC0
-P 4600 4100
-F 0 "TP5" V 4646 4288 50  0000 L CNN
-F 1 "I2S_BCLK_TP" V 4555 4288 50  0000 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 4800 4100 50  0001 C CNN
-F 3 "~" H 4800 4100 50  0001 C CNN
-	1    4600 4100
+P 5200 4100
+F 0 "TP5" V 5246 4288 50  0000 L CNN
+F 1 "I2S_BCLK_TP" V 5155 4288 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 5400 4100 50  0001 C CNN
+F 3 "~" H 5400 4100 50  0001 C CNN
+	1    5200 4100
 	0    -1   -1   0   
 $EndComp
-Connection ~ 4600 4100
+Connection ~ 5200 4100
 Wire Wire Line
-	5850 3600 6100 3600
+	4850 3800 6100 3800
 $Comp
 L AudioDac:MAX98357AETE U4
 U 1 1 60D10E4A
@@ -127,19 +127,19 @@ $EndComp
 Wire Wire Line
 	6800 4700 6800 4850
 Wire Wire Line
-	6850 3600 6850 2900
+	6850 3600 6850 3000
 Wire Wire Line
-	6850 2900 7000 2900
+	6850 3000 7000 3000
 Wire Wire Line
-	7400 2900 7400 3100
+	7400 3000 7400 3100
 Wire Wire Line
-	7000 3600 7000 2900
-Connection ~ 7000 2900
+	7000 3600 7000 3000
+Connection ~ 7000 3000
 Wire Wire Line
-	7000 2900 7400 2900
-Connection ~ 6850 2900
+	7000 3000 7400 3000
+Connection ~ 6850 3000
 Wire Wire Line
-	6850 2750 6850 2900
+	6850 2850 6850 3000
 Wire Wire Line
 	6900 4850 6900 4700
 Wire Wire Line
@@ -152,65 +152,89 @@ Wire Wire Line
 Wire Wire Line
 	7000 4850 7000 4700
 Connection ~ 6900 4850
-Text HLabel 5100 4500 0    50   Input ~ 0
+Text HLabel 4850 4350 0    50   Input ~ 0
 ~SHUTDOWN
 Wire Wire Line
-	6250 4500 6250 4350
-Wire Wire Line
-	6250 4350 6350 4350
-Wire Wire Line
-	5100 4500 5500 4500
+	4850 4350 5100 4350
 $Comp
 L power:+3.3V #PWR0104
 U 1 1 60D4805E
-P 6150 4250
-F 0 "#PWR0104" H 6150 4100 50  0001 C CNN
-F 1 "+3.3V" V 6165 4378 50  0000 L CNN
-F 2 "" H 6150 4250 50  0001 C CNN
-F 3 "" H 6150 4250 50  0001 C CNN
-	1    6150 4250
+P 6300 4250
+F 0 "#PWR0104" H 6300 4100 50  0001 C CNN
+F 1 "+3.3V" V 6315 4378 50  0000 L CNN
+F 2 "" H 6300 4250 50  0001 C CNN
+F 3 "" H 6300 4250 50  0001 C CNN
+	1    6300 4250
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6150 4250 6350 4250
+	6300 4250 6350 4250
 Wire Wire Line
 	6100 3900 6350 3900
-Connection ~ 6100 3900
 Wire Wire Line
-	6100 3600 6100 3900
+	6100 3800 6100 3900
 $Comp
 L Connector:TestPoint TP6
 U 1 1 6075DC2A
-P 5800 3900
-F 0 "TP6" V 5605 3972 50  0000 C CNN
-F 1 "I2S_DIN_TP" V 5696 3972 50  0000 C CNN
-F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 6000 3900 50  0001 C CNN
-F 3 "~" H 6000 3900 50  0001 C CNN
-	1    5800 3900
-	0    -1   1    0   
+P 6100 3800
+F 0 "TP6" H 6100 4125 50  0000 C CNN
+F 1 "I2S_DIN_TP" H 6100 4034 50  0000 C CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 6300 3800 50  0001 C CNN
+F 3 "~" H 6300 3800 50  0001 C CNN
+	1    6100 3800
+	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	5800 3900 6100 3900
-Wire Wire Line
-	5300 4000 5400 4000
+	5450 4000 5550 4000
 $Comp
 L Device:R R13
 U 1 1 60D8CBB8
-P 5650 4500
-F 0 "R13" V 5443 4500 50  0000 C CNN
-F 1 "634kR" V 5534 4500 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 5580 4500 50  0001 C CNN
-F 3 "~" H 5650 4500 50  0001 C CNN
-	1    5650 4500
+P 5250 4350
+F 0 "R13" V 5043 4350 50  0000 C CNN
+F 1 "634kR" V 5134 4350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 5180 4350 50  0001 C CNN
+F 3 "~" H 5250 4350 50  0001 C CNN
+	1    5250 4350
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	5800 4500 6250 4500
-Text Label 5850 4500 0    50   ~ 0
+Text Label 5550 4350 0    50   ~ 0
 ~SD_MODE
 Wire Wire Line
 	7000 4850 7100 4850
 Wire Wire Line
 	7100 4850 7100 4700
 Connection ~ 7000 4850
+Connection ~ 6100 3800
+Wire Wire Line
+	5400 4350 6350 4350
+Text Notes 3150 5350 0    50   ~ 0
+Drive  SD_MODE high  through  a  sufficiently  large  resistor  to  select  both  the  left\nand  right  words  of  the  stereo  input  data  (left/2  +  right/2).\nRLARGE  and  RSMALL are determined by the VDDIO voltage (logic\nvoltage from control  interface)  that  is  driving  SD_MODE \naccording  to  the following two equations:\nRSMALL (kΩ) = 94.0 x VDDIO - 100\nRLARGE (kΩ) = 222.2 x VDDIO - 100
+Text Notes 2700 3150 0    50   ~ 0
+GAIN_SLOT
+Text Notes 3400 3150 0    50   ~ 0
+I2S Gain (dB)
+Wire Notes Line
+	2650 3200 3950 3200
+Wire Notes Line
+	3350 3100 3350 4100
+Text Notes 2700 3400 0    50   ~ 0
+Connect to GND\nthrough 100kR
+Text Notes 3500 3350 0    50   ~ 0
+15
+Text Notes 2900 3550 0    50   ~ 0
+GND
+Text Notes 3500 3550 0    50   ~ 0
+12
+Text Notes 2900 3700 0    50   ~ 0
+NC
+Text Notes 3500 3700 0    50   ~ 0
+9
+Text Notes 2900 3850 0    50   ~ 0
+VDD
+Text Notes 3500 3850 0    50   ~ 0
+6
+Text Notes 2700 4050 0    50   ~ 0
+VDD through\n100kR resitor
+Text Notes 3500 4050 0    50   ~ 0
+3
 $EndSCHEMATC
