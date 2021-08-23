@@ -36,8 +36,8 @@ ISR(TIMER1_OVF_vect)
  */
 ISR(TIMER1_COMPA_vect)
 {
+    digit = (digit + 1) % DISPLAY_SIZE;
     selectDigit(digit);
     GpioD->port.byte = g_DisplayRenderBuffer[digit];
-    digit = (digit + 1) % DISPLAY_SIZE;
 }
 

@@ -9,11 +9,29 @@
             "-DF_CPU=16000000UL",
             "-D__AVR_ATmega48__",
             "-o",
-            "main.o",
-            "main.c"
+            "interrupts.o",
+            "interrupts.c"
         ],
         "directory": "/home/jacob/Desktop/portalgun/firmware/atmega",
-        "file": "main.c"
+        "file": "interrupts.c"
+    },
+    {
+        "arguments": [
+            "avr-g++",
+            "-c",
+            "-mmcu=atmega48",
+            "-I/usr/lib/avr/include",
+            "-O3",
+            "-DF_CPU=16000000UL",
+            "-D__AVR_ATmega48__",
+            "main.o",
+            "interrupts.o",
+            "-o",
+            "main.elf",
+            "segments.c"
+        ],
+        "directory": "/home/jacob/Desktop/portalgun/firmware/atmega",
+        "file": "segments.c"
     },
     {
         "arguments": [
@@ -25,10 +43,10 @@
             "-DF_CPU=16000000UL",
             "-D__AVR_ATmega48__",
             "-o",
-            "interrupts.o",
-            "interrupts.c"
+            "main.o",
+            "main.c"
         ],
         "directory": "/home/jacob/Desktop/portalgun/firmware/atmega",
-        "file": "interrupts.c"
+        "file": "main.c"
     }
 ]

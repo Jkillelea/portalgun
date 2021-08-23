@@ -1,7 +1,0 @@
--I/usr/lib/avr/include
--DF_CPU=1000000L
--D__AVR_ATmega88P__
-# -I/home/jacob/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include-fixed
-# -I/home/jacob/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include
-# -I/home/jacob/.platformio/packages/toolchain-atmelavr/avr/include
-# -I/home/jacob/.platformio/packages/tool-unity

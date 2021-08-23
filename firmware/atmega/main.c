@@ -104,11 +104,15 @@ void selectDigit(int d)
         case 3:
             GpioB->port.b1 = 1;
             break;
+        default:
+            /* Nothing */
+            break;
     }
 
     return;
 }
 
+/* Digits between 0 and F are precalculated and in a lookup table */
 uint8_t num2segments(unsigned num)
 {
     if (num <= 0x0F)
@@ -116,6 +120,7 @@ uint8_t num2segments(unsigned num)
     return SEG_G;
 }
 
+/* Each digit uses 4 bits */
 void renderNumberToBuffer(uint16_t num)
 {
     g_DisplayRenderBuffer[0] = num2segments((num >>  0) & 0x0F);
@@ -131,27 +136,35 @@ int main(void)
 
     // Display pin directions
     // GpioD->ddr.byte = 0xFF;   // Segments on port D, all output
-    GpioD->ddr.b0   = DDR_OUT; // Digit selectors
-    GpioD->ddr.b1   = DDR_OUT; // Digit selectors
-    GpioD->ddr.b2   = DDR_OUT; // Digit selectors
-    GpioD->ddr.b3   = DDR_OUT; // Digit selectors
-    GpioD->ddr.b4   = DDR_OUT; // Digit selectors
-    GpioD->ddr.b5   = DDR_OUT; // Digit selectors
-    GpioD->ddr.b6   = DDR_OUT; // Digit selectors
-    GpioD->ddr.b7   = DDR_OUT; // Digit selectors
 
-    GpioB->ddr.b0   = DDR_OUT; // Digit selectors
-    GpioB->ddr.b1   = DDR_OUT;
-    GpioC->ddr.b0   = DDR_OUT;
-    GpioC->ddr.b1   = DDR_OUT;
+    GpioD->ddr.b0 = DDR_OUT; // Digit selectors
+    GpioD->ddr.b1 = DDR_OUT; // Digit selectors
+    GpioD->ddr.b2 = DDR_OUT; // Digit selectors
+    GpioD->ddr.b3 = DDR_OUT; // Digit selectors
+    GpioD->ddr.b4 = DDR_OUT; // Digit selectors
+    GpioD->ddr.b5 = DDR_OUT; // Digit selectors
+    GpioD->ddr.b6 = DDR_OUT; // Digit selectors
+    GpioD->ddr.b7 = DDR_OUT; // Digit selectors
+
+    GpioB->ddr.b0 = DDR_OUT; // Digit selectors
+    GpioB->ddr.b1 = DDR_OUT;
+    GpioC->ddr.b0 = DDR_OUT;
+    GpioC->ddr.b1 = DDR_OUT;
 
     spi_slave_init();
+
+    /*
+     * F_CLK = 16 MHz Prescaler = 8, Top Counter = 0x0FFF gives about a 4kHz timer.
+     * Each segment is rendered every 4th interrupt, giving about a 1kHz refresh rate
+     */
     configure_timer1(CS_Prescaler8, 0x0FFF);
 
     GpioD->port.byte = 0; // All segments off
     selectDigit(-1);      // All digits off
+    // End Setup Code
 
-    sei(); // enable interrupts, disable for debugging
+    // enable interrupts, disable for debugging
+    sei();
 
     g_DisplayNumber = 0xC137;
     renderNumberToBuffer(g_DisplayNumber);
@@ -159,7 +172,7 @@ int main(void)
 
     while (1)
     {
-        g_DisplayNumber++;
+        // g_DisplayNumber++;
         renderNumberToBuffer(g_DisplayNumber);
         __builtin_avr_delay_cycles(F_CPU / 16); // roughly 16 counts per second
     }
